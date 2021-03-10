@@ -6,8 +6,8 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * goods
- * @author 
+ * @Author : 汪俊成
+ * @Date   
  */
 @Data
 public class Goods implements Serializable {
