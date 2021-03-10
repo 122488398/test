@@ -3,13 +3,12 @@ package com.wjc.fcth.pojo.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import lombok.Data;
+
 
 /**
  * @Author : 汪俊成
  * @Date   
  */
-@Data
 public class Goods implements Serializable {
     /**
      * 商品id
