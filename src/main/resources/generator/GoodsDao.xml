@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wjc.fcth.dao.GoodsDao">
+  <resultMap id="BaseResultMap" type="com.wjc.fcth.pojo.entity.Goods">
+    <id column="goods_id" jdbcType="BIGINT" property="goodsId" />
+    <result column="merchant_id" jdbcType="BIGINT" property="merchantId" />
+    <result column="goods_type_id" jdbcType="BIGINT" property="goodsTypeId" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="old_price" jdbcType="DECIMAL" property="oldPrice" />
+    <result column="now_price" jdbcType="DECIMAL" property="nowPrice" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="on_sale" jdbcType="BOOLEAN" property="onSale" />
+    <result column="stock" jdbcType="INTEGER" property="stock" />
+    <result column="imgs" jdbcType="VARCHAR" property="imgs" />
+    <result column="sub_title" jdbcType="VARCHAR" property="subTitle" />
+    <result column="packaging_fee" jdbcType="DECIMAL" property="packagingFee" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="weight" jdbcType="DOUBLE" property="weight" />
+    <result column="taste" jdbcType="VARCHAR" property="taste" />
+    <result column="sold" jdbcType="INTEGER" property="sold" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_user_id" jdbcType="BIGINT" property="updateUserId" />
+    <result column="praise" jdbcType="INTEGER" property="praise" />
+    <result column="unit" jdbcType="VARCHAR" property="unit" />
+    <result column="weight_kg" jdbcType="DOUBLE" property="weightKg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    goods_id, merchant_id, goods_type_id, pic, title, old_price, now_price, detail, on_sale, 
+    stock, imgs, sub_title, packaging_fee, province, sort, weight, taste, sold, create_time, 
+    update_time, update_user_id, praise, unit, weight_kg
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from goods
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="goods_id" keyProperty="goodsId" parameterType="com.wjc.fcth.pojo.entity.Goods" useGeneratedKeys="true">
+    insert into goods (merchant_id, goods_type_id, pic, 
+      title, old_price, now_price, 
+      detail, on_sale, stock, 
+      imgs, sub_title, packaging_fee, 
+      province, sort, weight, 
+      taste, sold, create_time, 
+      update_time, update_user_id, praise, 
+      unit, weight_kg)
+    values (#{merchantId,jdbcType=BIGINT}, #{goodsTypeId,jdbcType=BIGINT}, #{pic,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{oldPrice,jdbcType=DECIMAL}, #{nowPrice,jdbcType=DECIMAL}, 
+      #{detail,jdbcType=VARCHAR}, #{onSale,jdbcType=BOOLEAN}, #{stock,jdbcType=INTEGER}, 
+      #{imgs,jdbcType=VARCHAR}, #{subTitle,jdbcType=VARCHAR}, #{packagingFee,jdbcType=DECIMAL}, 
+      #{province,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{weight,jdbcType=DOUBLE}, 
+      #{taste,jdbcType=VARCHAR}, #{sold,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateUserId,jdbcType=BIGINT}, #{praise,jdbcType=INTEGER}, 
+      #{unit,jdbcType=VARCHAR}, #{weightKg,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" keyColumn="goods_id" keyProperty="goodsId" parameterType="com.wjc.fcth.pojo.entity.Goods" useGeneratedKeys="true">
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="goodsTypeId != null">
+        goods_type_id,
+      </if>
+      <if test="pic != null">
+        pic,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="oldPrice != null">
+        old_price,
+      </if>
+      <if test="nowPrice != null">
+        now_price,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="onSale != null">
+        on_sale,
+      </if>
+      <if test="stock != null">
+        stock,
+      </if>
+      <if test="imgs != null">
+        imgs,
+      </if>
+      <if test="subTitle != null">
+        sub_title,
+      </if>
+      <if test="packagingFee != null">
+        packaging_fee,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="weight != null">
+        weight,
+      </if>
+      <if test="taste != null">
+        taste,
+      </if>
+      <if test="sold != null">
+        sold,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateUserId != null">
+        update_user_id,
+      </if>
+      <if test="praise != null">
+        praise,
+      </if>
+      <if test="unit != null">
+        unit,
+      </if>
+      <if test="weightKg != null">
+        weight_kg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsTypeId != null">
+        #{goodsTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="pic != null">
+        #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="oldPrice != null">
+        #{oldPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="nowPrice != null">
+        #{nowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="onSale != null">
+        #{onSale,jdbcType=BOOLEAN},
+      </if>
+      <if test="stock != null">
+        #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="imgs != null">
+        #{imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="subTitle != null">
+        #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="packagingFee != null">
+        #{packagingFee,jdbcType=DECIMAL},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null">
+        #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="taste != null">
+        #{taste,jdbcType=VARCHAR},
+      </if>
+      <if test="sold != null">
+        #{sold,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        #{updateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="praise != null">
+        #{praise,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="weightKg != null">
+        #{weightKg,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wjc.fcth.pojo.entity.Goods">
+    update goods
+    <set>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsTypeId != null">
+        goods_type_id = #{goodsTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="pic != null">
+        pic = #{pic,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="oldPrice != null">
+        old_price = #{oldPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="nowPrice != null">
+        now_price = #{nowPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="onSale != null">
+        on_sale = #{onSale,jdbcType=BOOLEAN},
+      </if>
+      <if test="stock != null">
+        stock = #{stock,jdbcType=INTEGER},
+      </if>
+      <if test="imgs != null">
+        imgs = #{imgs,jdbcType=VARCHAR},
+      </if>
+      <if test="subTitle != null">
+        sub_title = #{subTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="packagingFee != null">
+        packaging_fee = #{packagingFee,jdbcType=DECIMAL},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="taste != null">
+        taste = #{taste,jdbcType=VARCHAR},
+      </if>
+      <if test="sold != null">
+        sold = #{sold,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUserId != null">
+        update_user_id = #{updateUserId,jdbcType=BIGINT},
+      </if>
+      <if test="praise != null">
+        praise = #{praise,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null">
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="weightKg != null">
+        weight_kg = #{weightKg,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wjc.fcth.pojo.entity.Goods">
+    update goods
+    set merchant_id = #{merchantId,jdbcType=BIGINT},
+      goods_type_id = #{goodsTypeId,jdbcType=BIGINT},
+      pic = #{pic,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      old_price = #{oldPrice,jdbcType=DECIMAL},
+      now_price = #{nowPrice,jdbcType=DECIMAL},
+      detail = #{detail,jdbcType=VARCHAR},
+      on_sale = #{onSale,jdbcType=BOOLEAN},
+      stock = #{stock,jdbcType=INTEGER},
+      imgs = #{imgs,jdbcType=VARCHAR},
+      sub_title = #{subTitle,jdbcType=VARCHAR},
+      packaging_fee = #{packagingFee,jdbcType=DECIMAL},
+      province = #{province,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      weight = #{weight,jdbcType=DOUBLE},
+      taste = #{taste,jdbcType=VARCHAR},
+      sold = #{sold,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_user_id = #{updateUserId,jdbcType=BIGINT},
+      praise = #{praise,jdbcType=INTEGER},
+      unit = #{unit,jdbcType=VARCHAR},
+      weight_kg = #{weightKg,jdbcType=DOUBLE}
+    where goods_id = #{goodsId,jdbcType=BIGINT}
+  </update>
+</mapper>
